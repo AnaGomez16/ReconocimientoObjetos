@@ -44,8 +44,7 @@ if video_url and ("youtube.com" in video_url or "youtu.be" in video_url):
          st.success("El enlace es válido.")
         # Aquí puedes realizar la lógica adicional que desees al tener un enlace de YouTube válido
 else:
-
-video_url = st.text_input('Insertar URL del video')
+    video_url = st.text_input('Insertar URL del video')
 
 
 if video_url:
