@@ -1,20 +1,15 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import requests
+
 
 
 st.title('Detección de logos/marcas')
 
-
-DATE_COLUMN = 'date/time'  # Define el nombre de la columna que contiene la fecha/hora
-
-DATA_URL = ('https://s3-us-west-2.amazonaws.com/'  # Define la URL del conjunto de datos
-            'streamlit-demo-data/uber-raw-data-sep14.csv.gz')
-
-# Definir variables y funciones
+#variables y funciones
 DATE_COLUMN = 'date/time'
 DATA_URL = 'https://s3-us-west-2.amazonaws.com/streamlit-demo-data/uber-raw-data-sep14.csv.gz'
-
 
 
 def load_data(nrows):
@@ -34,32 +29,36 @@ def es_enlace_youtube(url):
     return "youtube.com" in url or "youtu.be" in url
 
 #sección para mostrar el video
-
-st.subheader('Insertar URL del video')
 video_url = st.text_input('Insertar URL del video')
-
-
-if video_url and ("youtube.com" in video_url or "youtu.be" in video_url):
-        if es_enlace_youtube(video_url):
-         st.success("El enlace es válido.")
-        # Aquí puedes realizar la lógica adicional que desees al tener un enlace de YouTube válido
-else:
-    video_url = st.text_input('Insertar URL del video')
 
 
 if video_url:
     if es_enlace_youtube(video_url):
         st.success("El enlace es válido.")
         st.video(video_url)
-        # Aquí puedes realizar la lógica adicional que desees al tener un enlace de YouTube válido
-    else:
 
+        # Botón para guardar los resultados en MongoDB
+        if st.button('Guardar resultados en MongoDB'):
+            # Prepara los datos que deseas enviar a Flask
+            data_to_send = {
+                'video_url': video_url,
+                # Puedes agregar más datos si es necesario
+            }
+
+            # Envía los datos al servidor Flask
+            response = requests.post('http://localhost:5000/upload_videos', json=data_to_send)
+
+            # Verifica si la solicitud se completó con éxito
+            if response.status_code == 200:
+                st.success('Resultados guardados exitosamente en MongoDB')
+            else:
+                st.error('Error al guardar los resultados en MongoDB')
+    else:
         st.error("El enlace no es válido. Por favor, introduce un enlace válido de YouTube.")
 
+#muestra el video
 if video_url:
     st.video(video_url)
-
-
 
 
 
