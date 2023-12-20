@@ -2,7 +2,7 @@ from flask import Flask, request
 from flask_pymongo import PyMongo
 from flask_cors import CORS
 from decouple import config
-import logging
+
 
 #MongoDB connection
 app = Flask(__name__)
