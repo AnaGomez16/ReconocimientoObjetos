@@ -56,6 +56,7 @@ In less than two weeks, we have successfully implemented a proof-of-concept solu
 
 ## Folder and File Structure
 
+```markdown
 project_root/
 |-- notebooks/
 |   |-- DETR_COCO_format_cars.ipynb
