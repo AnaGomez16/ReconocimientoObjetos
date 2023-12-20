@@ -7,6 +7,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import requests
+import json
 
 
 #Function to check if the URL is a valid YouTube link
@@ -15,15 +16,21 @@ def valid_youtube_link(url):
 
 
 def save_data_to_mongodb(info_dict):
-   data_to_send = {'video_and_detections_report': info_dict}
 
-   response = requests.post('http://localhost:5000/upload_report', json=data_to_send)
+   url = 'http://localhost:5000/upload_report'
+   headers = {'Content-Type': 'application/json'}
+   data_to_send = json.dumps(info_dict)
    
-   if response.status_code == 200:
-      st.success('Results successfully saved in MongoDB.')
+   try:
+      response = requests.request('POST', url, data=data_to_send, headers=headers)
+      
+      if response.status_code == 200:
+         st.success('Results successfully saved in MongoDB.')
+      else:
+         st.error(f'Error while saving the results in MongoDB. Status Code: {response.status_code}')
    
-   else:
-      st.error('Error while saving the results in MongoDB.')
+   except requests.RequestException as e:
+      st.error(f'Error during the request to the server: {e}')
 
 
 def main():
