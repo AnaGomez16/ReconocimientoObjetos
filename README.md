@@ -69,7 +69,8 @@ project_root/
 |-- str_app.py
 |-- requirements.txt
 |-- README.md
-```markdown
+
+## Description of Files
 
 - **notebooks/:**
   - `DETR_COCO_format_cars.ipynb`: Notebook for training the DETR model with a COCO format dataset.
