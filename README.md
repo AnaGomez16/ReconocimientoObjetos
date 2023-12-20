@@ -54,22 +54,6 @@ In less than two weeks, we have successfully implemented a proof-of-concept solu
 
 4. **Access the Streamlit app in your browser and provide a YouTube video link for analysis.**
 
-## Folder and File Structure
-
-```markdown
-project_root/
-|-- notebooks/
-|   |-- DETR_COCO_format_cars.ipynb
-|   |-- YOLOV8_cars.ipynb
-|-- mongo_database/
-|   |-- mongo.py
-|-- video_processing/
-|   |-- video_processing_DETR.py
-|   |-- video_processing_YOLOv8.py
-|-- str_app.py
-|-- requirements.txt
-|-- README.md
-
 ## Description of Files
 
 - **notebooks/:**
