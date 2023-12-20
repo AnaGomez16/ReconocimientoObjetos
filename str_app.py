@@ -70,8 +70,7 @@ def main():
          barplot = sns.barplot(x='logo', y='total_detection_time_in_seconds', data=df, hue='logo')
          st.pyplot(barplot.figure)
 
-         if st.button('Save Data in MongoDB'):
-            save_data_to_mongodb(info_dict)
+         save_data_to_mongodb(info_dict)
 
    else:
       st.error("Please, enter a valid YouTube link.")
