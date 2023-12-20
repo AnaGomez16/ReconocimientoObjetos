@@ -15,9 +15,9 @@ def valid_youtube_link(url):
 
 
 def save_data_to_mongodb(info_dict):
-   data_to_send = {'info_video_and_detections': info_dict}
+   data_to_send = {'video_and_detections_report': info_dict}
 
-   response = requests.post('http://localhost:5000/upload_videos', json=data_to_send)
+   response = requests.post('http://localhost:5000/upload_report', json=data_to_send)
    
    if response.status_code == 200:
       st.success('Results successfully saved in MongoDB.')
